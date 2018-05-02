@@ -1,0 +1,55 @@
+# import Game, GameWhereInput, GameOrderByInput, GameCreateInput, GameUpdateInput, GameWhereUniqueInput from "./generated/prisma.graphql"
+# import Question, QuestionWhereInput, QuestionOrderByInput, QuestionCreateInput, QuestionUpdateInput from "./generated/prisma.graphql"
+# import Answer, AnswerWhereInput, AnswerOrderByInput, AnswerCreateInput, AnswerUpdateInput, AnswerWhereUniqueInput from "./generated/prisma.graphql"
+
+type QuestionWhereUniqueInput {
+  questionId: Int!
+}
+type AnswerWhereUniqueInput {
+  answerId: Int!
+}
+
+type Query {
+  games(
+    where: GameWhereInput,
+    orderBy: GameOrderByInput,
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int
+  ): [Game]!
+  game(where: GameWhereUniqueInput!): Game
+  questions(
+    where: QuestionWhereInput,
+    orderBy: QuestionOrderByInput,
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int
+  ): [Question]!
+  question(where: QuestionWhereUniqueInput!): Question
+  answers(
+    where: AnswerWhereInput,
+    orderBy: AnswerOrderByInput,
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int
+  ): [Answer]!
+  answer(where: AnswerWhereUniqueInput!): Answer
+}
+
+type Mutation {
+  createGame(data: GameCreateInput!): Game!
+  updateGame(data: GameUpdateInput!, where: GameWhereUniqueInput!): Game
+  deleteGame(where: GameWhereUniqueInput!): Game
+  createQuestion(data: QuestionCreateInput!): Question!
+  updateQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question
+  deleteQuestion(where: QuestionWhereUniqueInput!): Question
+  createAnswer(data: AnswerCreateInput!): Answer!
+  updateAnswer(data: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer
+  deleteAnswer(where: AnswerWhereUniqueInput!): Answer
+}

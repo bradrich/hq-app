@@ -1,0 +1,52 @@
+type User {
+  email: String! @unique
+  password: String!
+  name: String!
+  # Defaults
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Game {
+  startTime: DateTime
+  endTime: DateTime
+  numWinners: Int
+  averagePrize: Float
+  streamUrl: String
+  questions: [Question!]! @relation(name: "GameQuestions" onDelete: CASCADE)
+  # Defaults
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Question {
+  questionId: Int! @unique
+  question: String
+  category: String
+  questionNumber: Int
+  questionCount: Int
+  askTime: DateTime
+  endTime: DateTime
+  advancingPlayersCount: Int
+  eliminatedPlayersCount: Int
+  game: Game @relation(name: "GameQuestions")
+  answers: [Answer!]! @relation(name: "QuestionAnswers" onDelete: CASCADE)
+  # Defaults
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Answer {
+  answerId: Int! @unique
+  answer: String
+  correct: Boolean
+  count: Int
+  question: Question @relation(name: "QuestionAnswers")
+  # Defaults
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
